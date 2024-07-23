@@ -62,3 +62,75 @@ cdk deploy --profile ${ログインしたユーザー}
 ```
 
 11.cloudfront の URL で画面確認
+
+## 構築手順
+
+1.プロジェクトクローン
+
+```
+git clone https://gitlab-system-dev.k-idea.jp/sys-dev/ai_system/development_9/takada/cdk-test-template.git
+```
+
+2.プロジェクト移動
+
+```
+cd cdk-test-template
+```
+
+3.npm インストール
+
+```
+npm i
+```
+
+4.フロントアプリへ移動
+
+```
+cd frontend
+```
+
+5.npm インストール
+
+```
+npm i
+```
+
+6.ビルド
+
+```
+npm run build
+```
+
+7.ルートへ移動
+
+```
+cd ../
+```
+
+8.ターミナルで aws にログイン
+
+9.デプロイ
+
+```
+cdk deploy --profile ${ログインしたユーザー}
+```
+
+## ローカル環境立ち上げ
+
+1.フロントアプリへ移動
+
+```
+cd frontend
+```
+
+2.npm インストール
+
+```
+npm i
+```
+
+3.サーバー立ち上げ
+
+```
+npm run dev
+```
