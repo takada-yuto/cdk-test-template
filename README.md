@@ -1,14 +1,51 @@
-# Welcome to your CDK TypeScript project
+# 初期構築時にやったこと
 
-This is a blank project for CDK development with TypeScript.
+## プロジェクト作成
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+1.cdk プロジェクト作成
 
-## Useful commands
+```
+cdk init app --language typescript
+```
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+2.フロントアプリ作成
+
+```
+npx create-next-app@latest frontend
+```
+
+## フロントアプリ準備
+
+3.フロントアプリに移動
+
+```
+cd frontend
+```
+
+4.ビルド
+
+```
+npm run build
+```
+
+5.サーバー立ち上げ
+
+```
+npm run dev
+```
+
+6.画面確認（http://localhost:3000）
+
+## インフラ構築
+
+7.cdk コード追記
+
+8.ターミナルで aws にログイン
+
+9.デプロイ
+
+```
+cdk deploy --profile ${ログインしたユーザー}
+```
+
+9.cloudfront の URL で画面確認
