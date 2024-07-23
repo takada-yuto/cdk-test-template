@@ -1,6 +1,13 @@
-# 初期構築時にやったこと
+## 環境
 
-## プロジェクト作成
+- node 20.9.0
+- npm 10.1.0
+- Nextjs 14.2.5
+- CDK 2.148.0
+
+## 初期構築時にやったこと
+
+### プロジェクト作成
 
 1.cdk プロジェクト作成
 
@@ -14,7 +21,7 @@ cdk init app --language typescript
 npx create-next-app@latest frontend
 ```
 
-## フロントアプリ準備
+### フロントアプリ準備
 
 3.フロントアプリに移動
 
@@ -22,30 +29,36 @@ npx create-next-app@latest frontend
 cd frontend
 ```
 
-4.ビルド
+4.[next.config.mjs](frontend/next.config.mjs)に以下を追記
+
+```
+output: "export"
+```
+
+5.ビルド
 
 ```
 npm run build
 ```
 
-5.サーバー立ち上げ
+6.サーバー立ち上げ
 
 ```
 npm run dev
 ```
 
-6.画面確認（http://localhost:3000）
+7.画面確認（http://localhost:3000）
 
-## インフラ構築
+### インフラ構築
 
-7.cdk コード追記
+8.cdk コード追記
 
-8.ターミナルで aws にログイン
+9.ターミナルで aws にログイン
 
-9.デプロイ
+10.デプロイ
 
 ```
 cdk deploy --profile ${ログインしたユーザー}
 ```
 
-9.cloudfront の URL で画面確認
+11.cloudfront の URL で画面確認
