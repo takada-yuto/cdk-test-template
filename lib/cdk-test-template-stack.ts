@@ -6,7 +6,16 @@ import {
   FunctionRuntime,
   OriginAccessIdentity,
 } from "aws-cdk-lib/aws-cloudfront"
-import { AnyPrincipal, Effect, PolicyStatement } from "aws-cdk-lib/aws-iam"
+import {
+  AnyPrincipal,
+  Effect,
+  PolicyDocument,
+  PolicyStatement,
+  Role,
+  ServicePrincipal,
+} from "aws-cdk-lib/aws-iam"
+import { Code, Runtime } from "aws-cdk-lib/aws-lambda"
+import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs"
 import { BlockPublicAccess, Bucket, ObjectOwnership } from "aws-cdk-lib/aws-s3"
 import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment"
 import { Construct } from "constructs"
@@ -19,6 +28,12 @@ export class CdkTestTemplateStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props)
 
+    // CloudFrontのログを保存するためのS3バケットを作成
+    const cdkTemplateLogBucket = new Bucket(this, "CdkTemplateLogBucket", {
+      objectOwnership: ObjectOwnership.BUCKET_OWNER_PREFERRED,
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
+    })
     // フロントエンドの静的ファイルをホストするためのS3バケットを作成
     const cdkTemplateFrontendBucket = new Bucket(
       this,
@@ -29,15 +44,10 @@ export class CdkTestTemplateStack extends cdk.Stack {
         autoDeleteObjects: true,
         blockPublicAccess: BlockPublicAccess.BLOCK_ACLS,
         removalPolicy: cdk.RemovalPolicy.DESTROY,
+        serverAccessLogsBucket: cdkTemplateLogBucket,
+        serverAccessLogsPrefix: "frontend-bucket-access-logs/",
       }
     )
-
-    // CloudFrontのログを保存するためのS3バケットを作成
-    const cdkTemplateLogBucket = new Bucket(this, "CdkTemplateLogBucket", {
-      objectOwnership: ObjectOwnership.BUCKET_OWNER_PREFERRED,
-      removalPolicy: cdk.RemovalPolicy.DESTROY,
-      autoDeleteObjects: true,
-    })
 
     // S3バケットへのアクセスを許可するIAMポリシーステートメントを作成
     const policyStatement = new PolicyStatement({
@@ -66,6 +76,24 @@ export class CdkTestTemplateStack extends cdk.Stack {
         runtime: FunctionRuntime.JS_2_0,
       }
     )
+    // // Lambda関数のIAMロールを作成
+    // const lambdaRole = new Role(this, "LambdaExecutionRole", {
+    //   assumedBy: new ServicePrincipal("lambda.amazonaws.com"),
+    //   managedPolicies: [
+    //     cdk.aws_iam.ManagedPolicy.fromAwsManagedPolicyName(
+    //       "service-role/AWSLambdaBasicExecutionRole"
+    //     ),
+    //   ],
+    // })
+
+    // // Lambda関数を作成
+    // const myLambda = new NodejsFunction(this, "MyLambda", {
+    //   entry: "lambda/index.ts",
+    //   handler: "handler",
+    //   runtime: Runtime.NODEJS_20_X,
+    //   role: lambdaRole,
+    //   logRetention: cdk.aws_logs.RetentionDays.ONE_WEEK,
+    // })
 
     // CloudFrontディストリビューションを作成し、上記で作成したS3バケットとFunctionを関連付ける
     const distribution = new CloudFrontWebDistribution(
