@@ -147,6 +147,12 @@ exports[`snapshot test 1`] = `
     "CdkTemplateFrontendBucket12D940AB": {
       "DeletionPolicy": "Delete",
       "Properties": {
+        "LoggingConfiguration": {
+          "DestinationBucketName": {
+            "Ref": "CdkTemplateLogBucket3988B7AB",
+          },
+          "LogFilePrefix": "frontend-bucket-access-logs/",
+        },
         "PublicAccessBlockConfiguration": {
           "BlockPublicAcls": true,
           "IgnorePublicAcls": true,
@@ -459,6 +465,7 @@ exports[`snapshot test 1`] = `
     "CdkTemplateLogBucket3988B7AB": {
       "DeletionPolicy": "Delete",
       "Properties": {
+        "AccessControl": "LogDeliveryWrite",
         "OwnershipControls": {
           "Rules": [
             {
@@ -731,7 +738,7 @@ exports[`snapshot test 1`] = `
             [
               "Lambda function for auto-deleting objects in ",
               {
-                "Ref": "CdkTemplateFrontendBucket12D940AB",
+                "Ref": "CdkTemplateLogBucket3988B7AB",
               },
               " S3 bucket.",
             ],
