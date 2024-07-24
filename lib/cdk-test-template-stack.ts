@@ -76,24 +76,6 @@ export class CdkTestTemplateStack extends cdk.Stack {
         runtime: FunctionRuntime.JS_2_0,
       }
     )
-    // // Lambda関数のIAMロールを作成
-    // const lambdaRole = new Role(this, "LambdaExecutionRole", {
-    //   assumedBy: new ServicePrincipal("lambda.amazonaws.com"),
-    //   managedPolicies: [
-    //     cdk.aws_iam.ManagedPolicy.fromAwsManagedPolicyName(
-    //       "service-role/AWSLambdaBasicExecutionRole"
-    //     ),
-    //   ],
-    // })
-
-    // // Lambda関数を作成
-    // const myLambda = new NodejsFunction(this, "MyLambda", {
-    //   entry: "lambda/index.ts",
-    //   handler: "handler",
-    //   runtime: Runtime.NODEJS_20_X,
-    //   role: lambdaRole,
-    //   logRetention: cdk.aws_logs.RetentionDays.ONE_WEEK,
-    // })
 
     // CloudFrontディストリビューションを作成し、上記で作成したS3バケットとFunctionを関連付ける
     const distribution = new CloudFrontWebDistribution(
@@ -127,17 +109,58 @@ export class CdkTestTemplateStack extends cdk.Stack {
       }
     )
 
+    // CloudFrontディストリビューションのドメイン名を出力
+    new cdk.CfnOutput(this, "CdkTemplateFrontendWebDestributionName", {
+      value: distribution.distributionDomainName,
+    })
+
+    // Lambda関数のIAMロールを作成
+    const lambdaRole = new Role(this, "LambdaExecutionRole", {
+      assumedBy: new ServicePrincipal("lambda.amazonaws.com"),
+      managedPolicies: [
+        cdk.aws_iam.ManagedPolicy.fromAwsManagedPolicyName(
+          "service-role/AWSLambdaBasicExecutionRole"
+        ),
+      ],
+    })
+
+    // Lambda関数を作成
+    const lambda = new NodejsFunction(this, "TestTemplateLambda", {
+      entry: "lambda/index.ts",
+      handler: "handler",
+      runtime: Runtime.NODEJS_20_X,
+      role: lambdaRole,
+      logRetention: cdk.aws_logs.RetentionDays.ONE_WEEK,
+    })
+    // API Gatewayの設定
+    const api = new cdk.aws_apigateway.RestApi(this, "LambdaApi", {
+      restApiName: "Lambda Service",
+      defaultCorsPreflightOptions: {
+        allowOrigins: cdk.aws_apigateway.Cors.ALL_ORIGINS,
+        allowMethods: cdk.aws_apigateway.Cors.ALL_METHODS,
+      },
+    })
+
+    // Lambda統合
+    const getLambdaIntegration = new cdk.aws_apigateway.LambdaIntegration(
+      lambda
+    )
+    api.root.addMethod("GET", getLambdaIntegration)
+
     // CloudFrontディストリビューションを介してフロントエンドの静的ファイルをデプロイする
     new BucketDeployment(this, "CdkTemplateFrontendBucketDeployment", {
-      sources: [Source.asset(path.resolve(__dirname, "../frontend/out"))],
+      sources: [
+        Source.asset(path.resolve(__dirname, "../frontend/out")),
+        Source.jsonData("env.json", { apigatewayUrl: api.url }),
+      ],
       destinationBucket: cdkTemplateFrontendBucket,
       distribution: distribution,
       distributionPaths: ["/*"],
     })
 
-    // CloudFrontディストリビューションのドメイン名を出力
-    new cdk.CfnOutput(this, "CdkTemplateFrontendWebDestributionName", {
-      value: distribution.distributionDomainName,
+    // API Gatewayエンドポイントを出力
+    new cdk.CfnOutput(this, "APIGatewayUrl", {
+      value: api.url,
     })
   }
 }

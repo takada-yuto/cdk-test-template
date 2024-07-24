@@ -1,19 +1,15 @@
-import { Event } from "aws-cdk-lib/aws-stepfunctions-tasks"
-import { Context } from "vm"
-
-export async function handler(event: Event, context: Context) {
-  console.log("Received event:", JSON.stringify(event, null, 2))
-
-  // ここでビジネスロジックを実装します。
-  // 例: event.body を使用して、リクエストデータを処理します。
-
-  // レスポンスを返します。
+const cloudfrontUrl = process.env.cloudfrontUrl
+export async function handler() {
+  console.log(cloudfrontUrl)
   return {
     statusCode: 200,
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Content-Type",
+    },
     body: JSON.stringify({
       message: "Hello from Lambda!",
-      input: event,
     }),
   }
 }
