@@ -1,3 +1,16 @@
+## 構成図(cdk-dia で自動作成)
+
+![](./diagram.png)
+
+### 構成図自動作成
+
+```
+npx cdk-dia --collapse=false
+
+# 簡易版
+npx cdk-dia
+```
+
 ## 環境
 
 - node 20.9.0
