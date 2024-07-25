@@ -9,6 +9,9 @@ npx cdk-dia --collapse=false
 
 # 簡易版
 npx cdk-dia
+
+※WSL上にgraphvizが必要
+sudo apt install graphviz
 ```
 
 ## 環境
