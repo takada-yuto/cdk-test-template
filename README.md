@@ -21,7 +21,7 @@ cdk init app --language typescript
 npx create-next-app@latest frontend
 ```
 
-### フロントアプリ準備
+### フロント構築
 
 3.フロントアプリに移動
 
@@ -49,7 +49,7 @@ npm run dev
 
 7.画面確認（http://localhost:3000）
 
-### インフラ構築
+### AWS 環境構築
 
 8.cdk コード追記
 
@@ -134,3 +134,16 @@ npm i
 ```
 npm run dev
 ```
+
+## AWS 環境削除時
+
+1. AWS コンソールから cloudfront のログバケット(cdkTemplateLogBucket)を空にする
+
+- ACL を有効にしているもしくは、cloudfront からログを出力し続けてるせいで destroy 時にバケットを空にできなさそう
+- いいアイデアが浮かばないので手動削除
+
+2. 環境削除
+
+- ```
+  cdk destroy --profile ${ログインしたユーザー}
+  ```
