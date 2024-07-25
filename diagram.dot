@@ -1,0 +1,517 @@
+digraph "Diagram" {
+  splines = "ortho";
+  pad = "1.0";
+  nodesep = "0.60";
+  ranksep = "0.75";
+  fontname = "Sans-Serif";
+  fontsize = "15";
+  dpi = "200";
+  rankdir = "BT";
+  compound = "true";
+  fontcolor = "#222222";
+  edge [
+    color = "#D5871488",
+    penwidth = 2,
+    arrowhead = "dot",
+    arrowtail = "dot",
+  ];
+  node [
+    shape = "box",
+    style = "rounded",
+    fixedsize = true,
+    width = 1.7,
+    height = 1.7,
+    labelloc = "c",
+    imagescale = true,
+    fontname = "Sans-Serif",
+    fontsize = 8,
+    margin = 8,
+  ];
+  subgraph "CdkTestTemplateStack" {
+    subgraph "cluster-SubGraph.CdkTestTemplateStack" {
+      graph [
+        label = "CdkTestTemplateStack",
+        labelloc = "b",
+        labeljust = "l",
+        margin = "10",
+        fontsize = "16",
+        penwidth = "2",
+        pencolor = "#888888",
+        style = "filled,rounded",
+        fillcolor = "#e4e4e4",
+      ];
+      "CdkTestTemplateStack/CdkTemplateFrontendOAI/Resource" [
+        label = " CloudFront",
+        fontsize = 12,
+        image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Resource/Res_Security-Identity-and-Compliance/Res_48_Dark/Res_AWS-Identity-Access-Management_Permissions_48_Dark_gen.png",
+        imagescale = "true",
+        imagepos = "tc",
+        penwidth = "0",
+        shape = "node",
+        fixedsize = "true",
+        labelloc = "b",
+        width = 2,
+        height = 2.266,
+      ];
+      "CdkTestTemplateStack/ipRestrictionFunction/Resource" [
+        label = " CloudFront Function",
+        fontsize = 12,
+        image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Networking-Content/64/Arch_Amazon-CloudFront_64@5x.png",
+        imagescale = "true",
+        imagepos = "tc",
+        penwidth = "0",
+        shape = "node",
+        fixedsize = "true",
+        labelloc = "b",
+        width = 1.2,
+        height = 1.466,
+      ];
+      "CdkTestTemplateStack/CdkTemplateFrontendWebDestribution/CFDistribution" [
+        label = " CloudFront\nDistribution\nCFDistribution",
+        fontsize = 12,
+        image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Networking-Content/64/Arch_Amazon-CloudFront_64@5x.png",
+        imagescale = "true",
+        imagepos = "tc",
+        penwidth = "0",
+        shape = "node",
+        fixedsize = "true",
+        labelloc = "b",
+        width = 2,
+        height = 2.6979999999999995,
+      ];
+      "CdkTestTemplateStack/LambdaExecutionRole/Resource" [
+        label = " IAM Role",
+        fontsize = 12,
+        image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Identity-and-Access-Management_64@5x.png",
+        imagescale = "true",
+        imagepos = "tc",
+        penwidth = "0",
+        shape = "node",
+        fixedsize = "true",
+        labelloc = "b",
+        width = 1.2,
+        height = 1.466,
+      ];
+      "CdkTestTemplateStack/TestTemplateLambda/Resource" [
+        label = " Lambda Function",
+        fontsize = 12,
+        image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+        imagescale = "true",
+        imagepos = "tc",
+        penwidth = "0",
+        shape = "node",
+        fixedsize = "true",
+        labelloc = "b",
+        width = 2,
+        height = 2.266,
+      ];
+      subgraph "cluster-SubGraph.CdkTemplateLogBucket" {
+        graph [
+          label = "CdkTemplateLogBucket",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#d6d6d6",
+        ];
+        "CdkTestTemplateStack/CdkTemplateLogBucket/Resource" [
+          label = " S3 Bucket",
+          fontsize = 12,
+          image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Storage/64/Arch_Amazon-S3-Standard_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "CdkTestTemplateStack/CdkTemplateLogBucket/Policy/Resource" [
+          label = " S3 BucketPolicy",
+          fontsize = 12,
+          image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Resource/Res_Security-Identity-and-Compliance/Res_48_Dark/Res_AWS-Identity-Access-Management_Permissions_48_Dark_gen.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+      }
+      subgraph "cluster-SubGraph.CdkTemplateFrontendBucket" {
+        graph [
+          label = "CdkTemplateFrontendBucket",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#d6d6d6",
+        ];
+        "CdkTestTemplateStack/CdkTemplateFrontendBucket/Resource" [
+          label = " S3 Bucket",
+          fontsize = 12,
+          image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Storage/64/Arch_Amazon-S3-Standard_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "CdkTestTemplateStack/CdkTemplateFrontendBucket/AutoDeleteObjectsCustomResource" [
+          label = " CloudFormation\nCustomResource",
+          fontsize = 12,
+          image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Management-Governance/64/Arch_AWS-CloudFormation_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.682,
+        ];
+        "CdkTestTemplateStack/CdkTemplateFrontendBucket/Policy/Resource" [
+          label = " S3 BucketPolicy",
+          fontsize = 12,
+          image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Resource/Res_Security-Identity-and-Compliance/Res_48_Dark/Res_AWS-Identity-Access-Management_Permissions_48_Dark_gen.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+      }
+      subgraph "cluster-SubGraph.LambdaApi" {
+        graph [
+          label = "LambdaApi",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#d6d6d6",
+        ];
+        "CdkTestTemplateStack/LambdaApi/Resource" [
+          label = " ApiGateway RestApi",
+          fontsize = 12,
+          image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Networking-Content/64/Arch_Amazon-API-Gateway_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+        "CdkTestTemplateStack/LambdaApi/Deployment/Resource" [
+          label = " ApiGateway\nDeployment",
+          fontsize = 12,
+          image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Networking-Content/64/Arch_Amazon-API-Gateway_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.682,
+        ];
+        "CdkTestTemplateStack/LambdaApi/DeploymentStage.prod/Resource" [
+          label = " ApiGateway Stage",
+          fontsize = 12,
+          image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Networking-Content/64/Arch_Amazon-API-Gateway_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+        subgraph "cluster-SubGraph.GET" {
+          graph [
+            label = "GET",
+            labelloc = "b",
+            labeljust = "l",
+            margin = "10",
+            fontsize = "16",
+            penwidth = "2",
+            pencolor = "#888888",
+            style = "filled,rounded",
+            fillcolor = "#b9b9b9",
+          ];
+          "CdkTestTemplateStack/LambdaApi/Default/GET/ApiPermission.CdkTestTemplateStackLambdaApi7604CE10.GET.." [
+            label = " Lambda Permission",
+            fontsize = 12,
+            image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+            imagescale = "true",
+            imagepos = "tc",
+            penwidth = "0",
+            shape = "node",
+            fixedsize = "true",
+            labelloc = "b",
+            width = 1.2,
+            height = 1.466,
+          ];
+          "CdkTestTemplateStack/LambdaApi/Default/GET/ApiPermission.Test.CdkTestTemplateStackLambdaApi7604CE10.GET.." [
+            label = " Lambda Permission",
+            fontsize = 12,
+            image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+            imagescale = "true",
+            imagepos = "tc",
+            penwidth = "0",
+            shape = "node",
+            fixedsize = "true",
+            labelloc = "b",
+            width = 1.2,
+            height = 1.466,
+          ];
+          "CdkTestTemplateStack/LambdaApi/Default/GET/Resource" [
+            label = " ApiGateway Method",
+            fontsize = 12,
+            image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Networking-Content/64/Arch_Amazon-API-Gateway_64@5x.png",
+            imagescale = "true",
+            imagepos = "tc",
+            penwidth = "0",
+            shape = "node",
+            fixedsize = "true",
+            labelloc = "b",
+            width = 1.2,
+            height = 1.466,
+          ];
+        }
+      }
+      subgraph "cluster-SubGraph.CdkTemplateFrontendBucketDeployment" {
+        graph [
+          label = "CdkTemplateFrontendBucketDeployment",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#d6d6d6",
+        ];
+        "CdkTestTemplateStack/CdkTemplateFrontendBucketDeployment/CustomResource" [
+          label = " CloudFormation\nCustomResource\nCustomResource",
+          fontsize = 12,
+          image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Management-Governance/64/Arch_AWS-CloudFormation_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.898,
+        ];
+        "CdkTestTemplateStack/CdkTemplateFrontendBucketDeployment/AwsCliLayer/Resource" [
+          label = " Lambda LayerVersion",
+          fontsize = 12,
+          image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+      }
+      subgraph "cluster-SubGraph.Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C" {
+        graph [
+          label = "Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#d6d6d6",
+        ];
+        "CdkTestTemplateStack/Custom__CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource" [
+          label = " Lambda Function",
+          fontsize = 12,
+          image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        subgraph "cluster-SubGraph.ServiceRole" {
+          graph [
+            label = "ServiceRole",
+            labelloc = "b",
+            labeljust = "l",
+            margin = "10",
+            fontsize = "16",
+            penwidth = "2",
+            pencolor = "#888888",
+            style = "filled,rounded",
+            fillcolor = "#c7c7c7",
+          ];
+          "CdkTestTemplateStack/Custom__CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource" [
+            label = " IAM Role",
+            fontsize = 12,
+            image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Identity-and-Access-Management_64@5x.png",
+            imagescale = "true",
+            imagepos = "tc",
+            penwidth = "0",
+            shape = "node",
+            fixedsize = "true",
+            labelloc = "b",
+            width = 1.2,
+            height = 1.466,
+          ];
+          "CdkTestTemplateStack/Custom__CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource" [
+            label = " IAM Policy",
+            fontsize = 12,
+            image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Identity-and-Access-Management_64@5x.png",
+            imagescale = "true",
+            imagepos = "tc",
+            penwidth = "0",
+            shape = "node",
+            fixedsize = "true",
+            labelloc = "b",
+            width = 1.2,
+            height = 1.466,
+          ];
+        }
+      }
+      subgraph "cluster-SubGraph.ServiceRole" {
+        graph [
+          label = "ServiceRole",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#c7c7c7",
+        ];
+        "CdkTestTemplateStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource" [
+          label = " IAM Role",
+          fontsize = 12,
+          image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Identity-and-Access-Management_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+        "CdkTestTemplateStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource" [
+          label = " IAM Policy",
+          fontsize = 12,
+          image = "/home/takada/cdk-test-template/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Identity-and-Access-Management_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+      }
+    }
+  }
+  "CdkTestTemplateStack/CdkTemplateLogBucket/Policy/Resource" -> "CdkTestTemplateStack/CdkTemplateLogBucket/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/CdkTemplateLogBucket/Policy/Resource" -> "CdkTestTemplateStack/CdkTemplateFrontendBucket/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/CdkTemplateFrontendBucket/Resource" -> "CdkTestTemplateStack/CdkTemplateLogBucket/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/CdkTemplateFrontendBucket/Policy/Resource" -> "CdkTestTemplateStack/CdkTemplateFrontendBucket/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/CdkTemplateFrontendBucket/Policy/Resource" -> "CdkTestTemplateStack/CdkTemplateFrontendOAI/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/LambdaApi/Deployment/Resource" -> "CdkTestTemplateStack/LambdaApi/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/LambdaApi/DeploymentStage.prod/Resource" -> "CdkTestTemplateStack/LambdaApi/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/LambdaApi/Default/GET/ApiPermission.CdkTestTemplateStackLambdaApi7604CE10.GET.." -> "CdkTestTemplateStack/TestTemplateLambda/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/LambdaApi/Default/GET/ApiPermission.CdkTestTemplateStackLambdaApi7604CE10.GET.." -> "CdkTestTemplateStack/LambdaApi/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/LambdaApi/Default/GET/ApiPermission.CdkTestTemplateStackLambdaApi7604CE10.GET.." -> "CdkTestTemplateStack/LambdaApi/DeploymentStage.prod/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/LambdaApi/Default/GET/ApiPermission.Test.CdkTestTemplateStackLambdaApi7604CE10.GET.." -> "CdkTestTemplateStack/TestTemplateLambda/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/LambdaApi/Default/GET/ApiPermission.Test.CdkTestTemplateStackLambdaApi7604CE10.GET.." -> "CdkTestTemplateStack/LambdaApi/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/LambdaApi/Default/GET/Resource" -> "CdkTestTemplateStack/TestTemplateLambda/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/LambdaApi/Default/GET/Resource" -> "CdkTestTemplateStack/LambdaApi/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/Custom__CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource" -> "CdkTestTemplateStack/CdkTemplateFrontendBucket/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/Custom__CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource" -> "CdkTestTemplateStack/CdkTemplateFrontendBucketDeployment/AwsCliLayer/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/CdkTemplateFrontendWebDestribution/CFDistribution" -> "CdkTestTemplateStack/CdkTemplateFrontendBucket/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/CdkTemplateFrontendWebDestribution/CFDistribution" -> "CdkTestTemplateStack/CdkTemplateFrontendOAI/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/CdkTemplateFrontendWebDestribution/CFDistribution" -> "CdkTestTemplateStack/ipRestrictionFunction/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/CdkTemplateFrontendWebDestribution/CFDistribution" -> "CdkTestTemplateStack/CdkTemplateLogBucket/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/TestTemplateLambda/Resource" -> "CdkTestTemplateStack/CdkTemplateFrontendWebDestribution/CFDistribution" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/TestTemplateLambda/Resource" -> "CdkTestTemplateStack/LambdaExecutionRole/Resource" [
+    dir = "both",
+  ];
+  "CdkTestTemplateStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource" -> "CdkTestTemplateStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource" [
+    dir = "both",
+  ];
+}
