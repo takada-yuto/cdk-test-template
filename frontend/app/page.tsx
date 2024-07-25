@@ -20,6 +20,7 @@ export default function Home() {
       console.log("Data received from API:", data)
       setLambdaMessage(data.message)
     } catch (e) {
+      setLambdaMessage(`Error: ${(e as Error).toString()}`)
       console.error("Failed to fetch data from API", e)
     }
   }

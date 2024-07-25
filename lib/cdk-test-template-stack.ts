@@ -9,21 +9,18 @@ import {
 import {
   AnyPrincipal,
   Effect,
-  PolicyDocument,
   PolicyStatement,
   Role,
   ServicePrincipal,
 } from "aws-cdk-lib/aws-iam"
-import { Code, Runtime } from "aws-cdk-lib/aws-lambda"
+import { Runtime } from "aws-cdk-lib/aws-lambda"
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs"
 import { BlockPublicAccess, Bucket, ObjectOwnership } from "aws-cdk-lib/aws-s3"
 import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment"
 import { Construct } from "constructs"
 import { readFileSync } from "fs"
 import path = require("path")
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
 
-// AWS CDKを使用してCloudFormationスタックを定義するクラス
 export class CdkTestTemplateStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props)
@@ -32,7 +29,7 @@ export class CdkTestTemplateStack extends cdk.Stack {
     const cdkTemplateLogBucket = new Bucket(this, "CdkTemplateLogBucket", {
       objectOwnership: ObjectOwnership.BUCKET_OWNER_PREFERRED,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
-      autoDeleteObjects: true,
+      // autoDeleteObjects: true, // ACLを有効にしているもしくはcloudfrontからログを出力し続けてるせいでバケットを空にできないので不要
     })
     // フロントエンドの静的ファイルをホストするためのS3バケットを作成
     const cdkTemplateFrontendBucket = new Bucket(
@@ -109,9 +106,10 @@ export class CdkTestTemplateStack extends cdk.Stack {
       }
     )
 
+    const cloudfrontUrl = `https://${distribution.distributionDomainName}`
     // CloudFrontディストリビューションのドメイン名を出力
-    new cdk.CfnOutput(this, "CdkTemplateFrontendWebDestributionName", {
-      value: distribution.distributionDomainName,
+    new cdk.CfnOutput(this, "cloudfrontUrl", {
+      value: cloudfrontUrl,
     })
 
     // Lambda関数のIAMロールを作成
@@ -131,14 +129,14 @@ export class CdkTestTemplateStack extends cdk.Stack {
       runtime: Runtime.NODEJS_20_X,
       role: lambdaRole,
       logRetention: cdk.aws_logs.RetentionDays.ONE_WEEK,
+      environment: {
+        cloudfrontUrl: cloudfrontUrl,
+      },
     })
+
     // API Gatewayの設定
     const api = new cdk.aws_apigateway.RestApi(this, "LambdaApi", {
-      restApiName: "Lambda Service",
-      defaultCorsPreflightOptions: {
-        allowOrigins: cdk.aws_apigateway.Cors.ALL_ORIGINS,
-        allowMethods: cdk.aws_apigateway.Cors.ALL_METHODS,
-      },
+      restApiName: "TestTemplateLambdaApi",
     })
 
     // Lambda統合
